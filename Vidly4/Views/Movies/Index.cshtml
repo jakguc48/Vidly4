@@ -1,0 +1,31 @@
+﻿@using WebGrease.Css.Extensions
+@model IEnumerable<Vidly4.Models.Movie>
+
+
+
+@{
+ViewBag.Title = "Movies";
+}
+
+<h2>Movies</h2>
+
+
+
+<table class="movcus">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Movie in Model)
+        {
+            <tr>
+                <td>@Movie.Id</td>
+                <td>@Movie.Name</td>
+            </tr>
+        }
+    </tbody>
+    
+</table>
