@@ -17,9 +17,13 @@ namespace Vidly4.Models
             return userIdentity;
         }
     }
-
+    //180808 18:49 ApplicationDbContext : IdentityDbContext to gateway do naszej bazy danych
+    //IdentityDbContext jest częścią grameworku identyfikacyjnego ASP>NET
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //180808 18:57 ten set reprezentuje naszą tablę customerów w bazie danych
+        public DbSet<Customer> Customers { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
