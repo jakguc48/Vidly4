@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,9 @@ namespace Vidly4.Models
 {
     public class Customer
     {
+        //180809 22:56 dodajemy tutaj oznaczenie sprawiające, że name nie bedize już nullable. możnemy tez dodać mx liczbe znaków
+        [Required]
+        [StringLength(255)]
         public string Name { get; set; }
         public int Id { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
