@@ -9,19 +9,39 @@ namespace Vidly4.Controllers
 {
     public class CustomersController : Controller
     {
+        //180810_0 18:43 Dodajemy kontekst, żeby nie używać hardcoded data tylko odwoływać się w metodzie do bazy danych.
+        //dodajemy również nadpisanie metody dispose podstawowego kontrolera
+
+        private ApplicationDbContext _context;
+
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+         
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+        //180810_0 18:43----------------------------------------------------------------------------------------------------
+
         // GET: Customers
         [Route("Customers")]
         public ActionResult Index()
         {
-            var Customer = GetCustomers();
+            //180810_1_18:51 tutaj zmieniamy na odniesienie do kontekstu zamiast wewnętrznej metody. Odniesienie do db
+            //dodajemy do odniesienia TOLIST żeby od razu ładował całość a nie pojedynczo podczas iteracji
+            var Customer = _context.Customers.ToList();
             return View(Customer);
+            //180810_1_18:51----------------------------------------------------------------------------------------------------
         }
 
         [Route("Customers/Details/{id:regex(\\d)}")]
         public ActionResult Details(int id)
         {
-            var Customer = GetCustomers().SingleOrDefault(c => c.Id == id);
-
+            //180810_2_18:55 tutaj również zmieniamy odniesienie na kontekst 
+            var Customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            //180810_2_18:55----------------------------------------------------------------------------------------------------
             if (Customer == null)
             {
                 return HttpNotFound();
@@ -30,13 +50,6 @@ namespace Vidly4.Controllers
             return View(Customer);
         }
 
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer {Id = 1, Name = "Harold Godfrey"},
-                new Customer {Id = 2, Name = "Josh Vicious"}
-            };
-        }
+        
     }
 }
