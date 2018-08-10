@@ -13,7 +13,7 @@
 }
 else
 {
-    <table>
+    <table class="movcus">
         <thead>
         <tr>
             <th>ID</th>
@@ -27,7 +27,7 @@ else
             <tr>
                 <td> @Customer.Id</td>
                 <td>@Html.ActionLink(Customer.Name, "Details", "Customers", new {id = Customer.Id}, null)</td>
-                <td>@Customer.MembershipType.DiscountRate</td>
+                <td>@Customer.MembershipType.DiscountRate%</td>
             </tr>
         }
         </tbody>

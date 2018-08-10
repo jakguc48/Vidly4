@@ -239,7 +239,7 @@ table {
             background: blueviolet;
         }
 
-        table.movcus thead td{
+        table.movcus thead th{
             border: 4px solid black;
             background: #921e12;
         }
