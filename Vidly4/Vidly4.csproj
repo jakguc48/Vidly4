@@ -223,6 +223,26 @@
     <Compile Include="Migrations\201808092059365_AddAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>201808092059365_AddAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808101811058_NewColumnInMembershipType.cs" />
+    <Compile Include="Migrations\201808101811058_NewColumnInMembershipType.Designer.cs">
+      <DependentUpon>201808101811058_NewColumnInMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101816409_UpdateMemTypes.cs" />
+    <Compile Include="Migrations\201808101816409_UpdateMemTypes.Designer.cs">
+      <DependentUpon>201808101816409_UpdateMemTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101838215_DropNameMigration.cs" />
+    <Compile Include="Migrations\201808101838215_DropNameMigration.Designer.cs">
+      <DependentUpon>201808101838215_DropNameMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101849273_NewColumnInMembershipType1.cs" />
+    <Compile Include="Migrations\201808101849273_NewColumnInMembershipType1.Designer.cs">
+      <DependentUpon>201808101849273_NewColumnInMembershipType1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808101852434_UpdateMemTypes1.cs" />
+    <Compile Include="Migrations\201808101852434_UpdateMemTypes1.Designer.cs">
+      <DependentUpon>201808101852434_UpdateMemTypes1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -333,6 +353,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808092059365_AddAnnotationsToCustomerName.resx">
       <DependentUpon>201808092059365_AddAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101811058_NewColumnInMembershipType.resx">
+      <DependentUpon>201808101811058_NewColumnInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101816409_UpdateMemTypes.resx">
+      <DependentUpon>201808101816409_UpdateMemTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101838215_DropNameMigration.resx">
+      <DependentUpon>201808101838215_DropNameMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101849273_NewColumnInMembershipType1.resx">
+      <DependentUpon>201808101849273_NewColumnInMembershipType1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808101852434_UpdateMemTypes1.resx">
+      <DependentUpon>201808101852434_UpdateMemTypes1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
