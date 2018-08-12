@@ -52,7 +52,13 @@ namespace Vidly4.Controllers
 
             return View(Customer);
         }
+        //180812_0_14:23 nowa akcja zwracająca view do forms do dodwania nowych customerow
+        public ActionResult New()
+        {
+            return View();
+        }
+        //180812_0_14:23----------------------------------------------------------------------------------------------------
 
-        
+
     }
 }
