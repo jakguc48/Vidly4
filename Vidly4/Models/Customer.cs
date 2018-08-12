@@ -13,13 +13,20 @@ namespace Vidly4.Models
         //180809 22:56 dodajemy tutaj oznaczenie sprawiające, że name nie bedize już nullable. możnemy tez dodać mx liczbe znaków
         [Required]
         [StringLength(255)]
+
         public string Name { get; set; }
+
         public int Id { get; set; }
+
         public bool IsSubscribedToNewsletter { get; set; }
+        
         //180809 22:23 dodajemy odwołanie do nowostworzonej klasy. Tak zwana navigation property. Pozwala nam podać oba obiekty razem. Coś jak relacja albo join
         public MembershipType MembershipType { get; set; }
+        
         //180809 22:23 można też dodać tylko foreign key, konwencja uznaje taki zapis
-        public byte MembershipTypeId { get; set; } 
+        [Display(Name = "Membership Type")] //dodane przy 180812_1_17:43
+        public byte MembershipTypeId { get; set; }
+
         //180812_1_17:25 zmieniamy label
         [Display(Name = "Day of birth")]
         //180812_1_17:25-----------------------------------------------

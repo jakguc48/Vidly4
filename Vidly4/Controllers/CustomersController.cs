@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using Vidly4.Models;
+using Vidly4.ViewModels;
 
 namespace Vidly4.Controllers
 {
@@ -55,7 +56,14 @@ namespace Vidly4.Controllers
         //180812_0_14:23 nowa akcja zwracająca view do forms do dodwania nowych customerow
         public ActionResult New()
         {
-            return View();
+            //180812_1_17:33Musimy dodać Dataset dla Membersiptypes w Initial model i dodać nowy View model do którego dodamy zarówno Cusotmera jak i Typy
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+
+            };
+            return View(viewModel);
         }
         //180812_0_14:23----------------------------------------------------------------------------------------------------
 
