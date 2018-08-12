@@ -67,6 +67,13 @@ namespace Vidly4.Controllers
         }
         //180812_0_14:23----------------------------------------------------------------------------------------------------
 
-
+        //180812_2_18:42 dodajemy akcje tworzaca uzytkownika z http post. Dodajemy HttpPost - dobry nawyk to taki, ze akcje które modyfikuja dane nie powinny być dostepne w miejscu, które pobiera dane czyli HttpGet
+        //zachodzi model binding - mvc framework jest na tyle zmyślny, ze rozumie powiazanie pól na stronie i wiaże Customer customer z naszym obiektem Modelem
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            return View();
+        }
+        //180812_2_18:42 -----------------------------------------------------
     }
 }
