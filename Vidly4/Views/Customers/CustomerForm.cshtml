@@ -1,0 +1,44 @@
+﻿@model Vidly4.ViewModels.CustomerFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Customer</h2>
+
+@*180812_0_14:28 używamy akcji do tworzenia formy. Dajemy using, zeby było disposed potem *@
+
+@using (Html.BeginForm("Create", "Customers"))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.Customer.Name)
+
+    @*180812_0_14:28 dodajemy tekstbox o klasie form-control *@
+    @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+    @*180812_0_14:28 --------------------------------------------------------------------------*@
+
+    @Html.LabelFor(m => m.Customer.Birthdate)
+    @*180812_4_19:01 dodajemy overload do formatu daty*@
+    @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+    @*180812_4_19:01 ------------------------------------------------------*@
+
+    @*180812_0_15_10 tutaj checkbox na podstawie getbootstrap.com *@
+    <div class="form-group">
+        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
+        <label>
+            Subscribed to newsletter?
+        </label>
+    </div>
+    @*180812_0_15_10 --------------------------------------------------------------------------*@
+
+    @*180812_1_17:43 Dodajemy combobox ale tutaj sprawa jest bardizej skomplikowana. Tworzymy nowy obiekt w ASP NET new SELECT LIST *@
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), " ", new { @class = "form-control" })
+    @*180812_1_17:43 --------------------------------------------------------------------------*@
+</div>
+    @*180812_2_18:39 Dodajemy button *@
+    <button type="submit" class="btn btn-primary">Save</button>
+    @*180812_2_18:39-------------------------------------------------------------*@
+        }
+
+        @*180812_0_14:28 ------------------------------------*@

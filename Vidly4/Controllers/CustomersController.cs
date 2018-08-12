@@ -58,12 +58,12 @@ namespace Vidly4.Controllers
         {
             //180812_1_17:33Musimy dodać Dataset dla Membersiptypes w Initial model i dodać nowy View model do którego dodamy zarówno Cusotmera jak i Typy
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
 
             };
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
         //180812_0_14:23----------------------------------------------------------------------------------------------------
 
@@ -79,5 +79,24 @@ namespace Vidly4.Controllers
             return RedirectToAction("Index", "Customers");
         }
         //180812_2_18:42 -----------------------------------------------------
+        public ActionResult Edit(int id)
+        {
+            //180812_4_19:01 tworzymy akcje Edit, dobieramy odpowiedniego customera i nadpisujemy standardowy View() zeby nie szukał View 'Edit' tylko używamy 'New'
+            // wiemy, że New używa newcustomerviewmodel wiec go tez podajemy
+            //zmieniamy nazwe CustomerFormViewModel na CustomerFormViewModel F2
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
+        }
     }
 }
