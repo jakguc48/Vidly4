@@ -1,4 +1,6 @@
-﻿@model Vidly4.Models.Customer
+﻿@using System.Activities.Statements
+@using Microsoft.Ajax.Utilities
+@model Vidly4.Models.Customer
 
 @{
     ViewBag.Title = @Model.Name;
@@ -6,3 +8,12 @@
 }
 
 <h2>@Model.Name</h2>
+
+
+<ul>
+    <li>@Model.MembershipType.Name</li>
+    @if (Model.Birthdate.HasValue)
+    {
+        <li>@Model.Birthdate.Value.ToString("MM/dd/yyyy")</li>
+    }
+</ul>

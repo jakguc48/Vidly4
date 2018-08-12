@@ -23,6 +23,9 @@ namespace Vidly4.Models
     {
         //180808 18:57 ten set reprezentuje naszą tablę customerów w bazie danych
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<MovieGenere> MovieGeneres { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

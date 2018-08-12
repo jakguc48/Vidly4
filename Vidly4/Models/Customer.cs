@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Microsoft.Owin.Security.DataHandler;
+using Newtonsoft.Json;
 
 namespace Vidly4.Models
 {
@@ -17,6 +19,9 @@ namespace Vidly4.Models
         //180809 22:23 dodajemy odwołanie do nowostworzonej klasy. Tak zwana navigation property. Pozwala nam podać oba obiekty razem. Coś jak relacja albo join
         public MembershipType MembershipType { get; set; }
         //180809 22:23 można też dodać tylko foreign key, konwencja uznaje taki zapis
-        public byte MembershipTypeId { get; set; }  
+        public byte MembershipTypeId { get; set; } 
+        public DateTime? Birthdate { get; set; }
+
+
     }
 }

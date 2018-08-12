@@ -1,0 +1,28 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Vidly4.Models.Movie
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    @foreach (var prop in ViewData.ModelMetadata.Properties)
+    {
+        if (prop.PropertyName.Equals("ReleaseDate") || prop.PropertyName.Equals("AddDate"))
+        {
+        <li>@prop.PropertyName : @prop.SimpleDisplayText.AsDateTime().Date.ToString("dddd, MMMM d, yyyy")</li>
+        }
+        else if (prop.PropertyName.Equals("MovieGenere"))
+        {
+        <li>@prop.PropertyName : @Model.MovieGenere.GenereName</li>
+        }
+        else
+        {
+        <li>@prop.PropertyName : @prop.SimpleDisplayText</li>    
+        }
+        
+    }
+    
+</ul>
+

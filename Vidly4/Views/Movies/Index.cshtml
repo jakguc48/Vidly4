@@ -16,6 +16,7 @@ ViewBag.Title = "Movies";
         <tr>
             <th>id</th>
             <th>name</th>
+            <th>genere</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +24,8 @@ ViewBag.Title = "Movies";
         {
             <tr>
                 <td>@Movie.Id</td>
-                <td>@Movie.Name</td>
+                <td>@Html.ActionLink(Movie.Name, "Details", "Movies", new { id = Movie.Id }, null)</td>
+                <td>@Movie.MovieGenere.GenereName</td>
             </tr>
         }
     </tbody>
