@@ -72,7 +72,11 @@ namespace Vidly4.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-            return View();
+            //180812_3_18:48 Samo add dodaje ale oznacza jako 'added'. jesli chcemy zatwierdzic zmiany w kontekscie, musimy uzyc funkcji save
+            //trzeba nakierowac po edycji z powrotem do odpowiedniej akcji
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
         }
         //180812_2_18:42 -----------------------------------------------------
     }
