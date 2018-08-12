@@ -9,6 +9,7 @@ namespace Vidly4.Models
     public class Movie
     {
         [Required]
+
         public string Name { get; set; }
         public int Id { get; set; }
         [Required]

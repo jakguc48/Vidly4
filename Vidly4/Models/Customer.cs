@@ -20,6 +20,9 @@ namespace Vidly4.Models
         public MembershipType MembershipType { get; set; }
         //180809 22:23 można też dodać tylko foreign key, konwencja uznaje taki zapis
         public byte MembershipTypeId { get; set; } 
+        //180812_1_17:25 zmieniamy label
+        [Display(Name = "Day of birth")]
+        //180812_1_17:25-----------------------------------------------
         public DateTime? Birthdate { get; set; }
 
 
