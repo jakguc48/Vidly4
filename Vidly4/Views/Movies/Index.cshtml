@@ -1,10 +1,11 @@
-﻿@using WebGrease.Css.Extensions
+﻿@using System.Web.UI.WebControls
+@using WebGrease.Css.Extensions
 @model IEnumerable<Vidly4.Models.Movie>
 
 
 
 @{
-ViewBag.Title = "Movies";
+    ViewBag.Title = "Movies";
 }
 
 <h2>Movies</h2>
@@ -26,8 +27,13 @@ ViewBag.Title = "Movies";
                 <td>@Movie.Id</td>
                 <td>@Html.ActionLink(Movie.Name, "Details", "Movies", new { id = Movie.Id }, null)</td>
                 <td>@Movie.MovieGenere.GenereName</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Movies", new { id = Movie.Id, @type = "submit", @class = "btn btn-primary" }, null)</td>
+
+
             </tr>
         }
     </tbody>
-    
+
 </table>
+<br /><br/>
+<button onclick="location.href='@Url.Action("New", "Movies")';", class = "btn btn-primary">New Movie</button>

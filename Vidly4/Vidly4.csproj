@@ -315,6 +315,22 @@
     <Compile Include="Migrations\201808111547081_FillGenereAndMovie.Designer.cs">
       <DependentUpon>201808111547081_FillGenereAndMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808132136385_ChangeMovieTable.cs" />
+    <Compile Include="Migrations\201808132136385_ChangeMovieTable.Designer.cs">
+      <DependentUpon>201808132136385_ChangeMovieTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808132145596_Addtesttable.cs" />
+    <Compile Include="Migrations\201808132145596_Addtesttable.Designer.cs">
+      <DependentUpon>201808132145596_Addtesttable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808142159043_ModifyMovieModel.cs" />
+    <Compile Include="Migrations\201808142159043_ModifyMovieModel.Designer.cs">
+      <DependentUpon>201808142159043_ModifyMovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808142228505_ModifyMovieModel2.cs" />
+    <Compile Include="Migrations\201808142228505_ModifyMovieModel2.Designer.cs">
+      <DependentUpon>201808142228505_ModifyMovieModel2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -323,9 +339,11 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieGenere.cs" />
+    <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMoviesViewModel.cs" />
@@ -397,6 +415,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -498,6 +517,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808111547081_FillGenereAndMovie.resx">
       <DependentUpon>201808111547081_FillGenereAndMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808132136385_ChangeMovieTable.resx">
+      <DependentUpon>201808132136385_ChangeMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808132145596_Addtesttable.resx">
+      <DependentUpon>201808132145596_Addtesttable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808142159043_ModifyMovieModel.resx">
+      <DependentUpon>201808142159043_ModifyMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808142228505_ModifyMovieModel2.resx">
+      <DependentUpon>201808142228505_ModifyMovieModel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

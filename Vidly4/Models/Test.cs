@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Vidly4.Models
 {
-    public class Movie
+    public class Test
     {
         [Required]
         [Display(Name = "Name")]
@@ -17,18 +17,16 @@ namespace Vidly4.Models
         [Display(Name = "Genere")]
         public MovieGenere MovieGenere { get; set; }
 
-        [Display(Name = "Genere")]
-        [Required]
+
         public int MovieGenereId { get; set; }
 
-        
 
-        
+        [Required]
         [Display(Name = "Release Date")]
-        public DateTime ReleaseDate  { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
-        
-        public DateTime? AddDate { get; set; }
+        [Required]
+        public DateTime AddDate { get; set; }
 
         [Required]
         [Display(Name = "Number in stock")]
