@@ -99,7 +99,7 @@ namespace Vidly4.Controllers
             if (movie.Id == 0)
             {
                 _context.Movies.Add(movie);
-                //movie.ReleaseDate = DateTime.Now;
+                movie.AddDate = DateTime.Now;
             }
             else
             {
