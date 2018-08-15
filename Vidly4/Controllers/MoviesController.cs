@@ -68,7 +68,7 @@ namespace Vidly4.Controllers
             var movieGeneres = _context.MovieGeneres.ToList();
             var viewModel = new MovieFormViewModel
             {
-                Movie = new Movie(),
+                
                 MovieGeneres = movieGeneres,
                 FormType = "New Movie"
             };
@@ -84,9 +84,8 @@ namespace Vidly4.Controllers
                 return HttpNotFound();
             }
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 MovieGeneres = _context.MovieGeneres.ToList(),
                 FormType = "Edit Movie"
             };
@@ -101,9 +100,8 @@ namespace Vidly4.Controllers
 
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
                     MovieGeneres = _context.MovieGeneres.ToList()
                 };
                 return View("MovieForm", viewModel);
