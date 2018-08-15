@@ -10,33 +10,47 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+<div class="form-group">
+    @Html.LabelFor(m => m.Customer.Name)
+
+    @*180812_0_14:28 dodajemy tekstbox o klasie form-control *@
+    @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+    @*180812_0_14:28 --------------------------------------------------------------------------*@
+
+    @*180815_0_13_57 dodajemy Validacje Messages*@
+    @Html.ValidationMessageFor(c => c.Customer.Name)
+    @*180815_0_13_57 ----------------------------------------------------------*@
+
+    <br />
+
+    @Html.LabelFor(m => m.Customer.Birthdate)
+    @*180812_4_19:01 dodajemy overload do formatu daty*@
+    @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Customer.Birthdate)
+    @*180812_4_19:01 ------------------------------------------------------*@
+
+    <br />
+
+    @*180812_0_15_10 tutaj checkbox na podstawie getbootstrap.com *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Name)
-
-        @*180812_0_14:28 dodajemy tekstbox o klasie form-control *@
-        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
-        @*180812_0_14:28 --------------------------------------------------------------------------*@
-
-        @Html.LabelFor(m => m.Customer.Birthdate)
-        @*180812_4_19:01 dodajemy overload do formatu daty*@
-        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @*180812_4_19:01 ------------------------------------------------------*@
-
-        @*180812_0_15_10 tutaj checkbox na podstawie getbootstrap.com *@
-        <div class="form-group">
-            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
-            <label>
-                Subscribed to newsletter?
-            </label>
-        </div>
-        @*180812_0_15_10 --------------------------------------------------------------------------*@
-
-        @*180812_1_17:43 Dodajemy combobox ale tutaj sprawa jest bardizej skomplikowana. Tworzymy nowy obiekt w ASP NET new SELECT LIST *@
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), " ", new { @class = "form-control" })
-        @*180812_1_17:43 --------------------------------------------------------------------------*@
-
+        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
+        <label>
+            Subscribed to newsletter?
+        </label>
     </div>
+    @*180812_0_15_10 --------------------------------------------------------------------------*@
+
+    <br />
+
+    @*180812_1_17:43 Dodajemy combobox ale tutaj sprawa jest bardizej skomplikowana. Tworzymy nowy obiekt w ASP NET new SELECT LIST *@
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), " ", new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
+    @*180812_1_17:43 --------------------------------------------------------------------------*@
+
+    <br />
+
+</div>
     @*180812_2_18:39 Dodajemy button *@
     <button type="submit" class="btn btn-primary">Save</button>
     @*180812_2_18:39-------------------------------------------------------------*@

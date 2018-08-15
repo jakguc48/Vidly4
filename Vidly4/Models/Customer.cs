@@ -11,9 +11,9 @@ namespace Vidly4.Models
     public class Customer
     {
         //180809 22:56 dodajemy tutaj oznaczenie sprawiające, że name nie bedize już nullable. możnemy tez dodać mx liczbe znaków
-        [Required]
+            //180815_0_14:20 - napisujemy wiadomość
+        [Required(ErrorMessage = "Proszę wprowadzić imię użytkownika")]
         [StringLength(255)]
-
         public string Name { get; set; }
 
         public int Id { get; set; }
@@ -25,10 +25,11 @@ namespace Vidly4.Models
         
         //180809 22:23 można też dodać tylko foreign key, konwencja uznaje taki zapis
         [Display(Name = "Membership Type")] //dodane przy 180812_1_17:43
-        public int? MembershipTypeId { get; set; }
+        public int MembershipTypeId { get; set; }
 
         //180812_1_17:25 zmieniamy label
         [Display(Name = "Day of birth")]
+        [Min18YearsIFAMember]
         //180812_1_17:25-----------------------------------------------
         public DateTime? Birthdate { get; set; }
 

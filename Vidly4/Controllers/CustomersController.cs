@@ -60,7 +60,8 @@ namespace Vidly4.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
-                MembershipTypes = membershipTypes
+                MembershipTypes = membershipTypes,
+                Customer = new Customer()
 
             };
             return View("CustomerForm", viewModel);
@@ -75,24 +76,44 @@ namespace Vidly4.Controllers
             //180812_3_18:48 Samo add dodaje ale oznacza jako 'added'. jesli chcemy zatwierdzic zmiany w kontekscie, musimy uzyc funkcji save
             //trzeba nakierowac po edycji z powrotem do odpowiedniej akcji
                 //180812_5_19:23 Rozdzielamy na akcje dodania i edycji jesli 0 to tworzony, jesli nie to pobieramy go z bazy danych. jest single bo wiemy ze zwraca, nie zakladamy ze taki nie istnieje przy decyji gdyz jestesmy przekierowanie bezposrednio z klikniecia na customera
-            if (customer.Id == 0)
-            {
-                _context.Customers.Add(customer);
-            }
-            else
-            {
-                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
 
-                //180812_5_19:32 ręcznie dodajemy mapowanie obiektów, dzięki temu decydujemy co może być poprawione a co nie
-                customerInDb.Name = customer.Name;
-                customerInDb.Birthdate = customer.Birthdate;
-                customerInDb.MembershipTypeId = customer.MembershipTypeId;
-                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-                //180812_5_19:32----------------------------------------------
+            //180815_0_13_57 dodajemy Validacje
+            if (!ModelState.IsValid)
+            {
+
+                var viewModel = new CustomerFormViewModel
+                {
+
+                    Customer = customer, //dodajemy dane które są wprowadzone na stronie, odwołujemy się do zmiennej Customer customer podanej jako parametr akcji Save
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
             }
-            _context.SaveChanges();
-            //180812_3_18:48 --------------------------------------------------------------------------------------------
-            return RedirectToAction("Index", "Customers");
+            
+
+
+                //180815_0_13_57--------------------------------------------------------------------------
+
+                if (customer.Id == 0)
+                {
+                    _context.Customers.Add(customer);
+                }
+                else
+                {
+                    var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                    //180812_5_19:32 ręcznie dodajemy mapowanie obiektów, dzięki temu decydujemy co może być poprawione a co nie
+                    customerInDb.Name = customer.Name;
+                    customerInDb.Birthdate = customer.Birthdate;
+                    customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                    customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                    //180812_5_19:32----------------------------------------------
+                }
+
+                _context.SaveChanges();
+                //180812_3_18:48 --------------------------------------------------------------------------------------------
+                return RedirectToAction("Index", "Customers");
+            
         }
         //180812_2_18:42 -----------------------------------------------------
         public ActionResult Edit(int id)
