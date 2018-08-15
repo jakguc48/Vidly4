@@ -12,7 +12,7 @@ namespace Vidly4.Models
     {
         //180809 22:56 dodajemy tutaj oznaczenie sprawiające, że name nie bedize już nullable. możnemy tez dodać mx liczbe znaków
             //180815_0_14:20 - napisujemy wiadomość
-        [Required(ErrorMessage = "Proszę wprowadzić imię użytkownika")]
+        [Required(ErrorMessage = "Name jest polem wymaganym")]
         [StringLength(255)]
         public string Name { get; set; }
 

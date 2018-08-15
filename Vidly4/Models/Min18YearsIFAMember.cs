@@ -23,7 +23,7 @@ namespace Vidly4.Models
 
             if (customer.Birthdate == null)
             {
-                return new ValidationResult("Birthdate is required");
+                return new ValidationResult("Birthdate jest polem wymaganym");
             }
             //wyliczenie wieku
             var age = DateTime.Now.Year - customer.Birthdate.Value.Year;
