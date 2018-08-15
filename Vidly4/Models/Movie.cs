@@ -17,13 +17,13 @@ namespace Vidly4.Models
         [Display(Name = "Genere")]
         public MovieGenere MovieGenere { get; set; }
 
-        [Display(Name = "Genere")]
         [Required]
+        [Display(Name = "Genere")]
         public int MovieGenereId { get; set; }
 
         
 
-        
+        [Required]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate  { get; set; }
 
@@ -31,6 +31,7 @@ namespace Vidly4.Models
         public DateTime? AddDate { get; set; }
 
         [Required]
+        [MovieNumberInStockReq]
         [Display(Name = "Number in stock")]
         public byte NumberInStock { get; set; }
     }

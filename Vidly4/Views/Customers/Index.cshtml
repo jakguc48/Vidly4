@@ -15,24 +15,27 @@ else
 {
     <table class="movcus">
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Subscription Name</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Subscription Name</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var Customer in Model)
-        {
-            <tr>
-                <td> @Customer.Id</td>
-                @*180812_4_19:01 dodajemy akcje edit pozwalajacą zmianiać dane customera zamiast Details alt+enter->new action*@
-                <td>@Html.ActionLink(Customer.Name, "Edit", "Customers", new { id = Customer.Id }, null)</td>
-                @*180812_4_19:01 -----------------------------------------------------------------------*@
-                <td>@Customer.MembershipType.Name</td>
-            </tr>
-        }
+            @foreach (var Customer in Model)
+            {
+                <tr>
+                    <td> @Customer.Id</td>
+                    @*180812_4_19:01 dodajemy akcje edit pozwalajacą zmianiać dane customera zamiast Details alt+enter->new action*@
+                    <td>@Html.ActionLink(Customer.Name, "Edit", "Customers", new { id = Customer.Id }, null)</td>
+                    @*180812_4_19:01 -----------------------------------------------------------------------*@
+                    <td>@Customer.MembershipType.Name</td>
+                </tr>
+            }
         </tbody>
     </table>
+    <br />
+    <button onclick="location.href = '@Url.Action("New", "Customers")';" , class="btn btn-primary">New Customer</button>
+
 }
 

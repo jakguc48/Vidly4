@@ -9,13 +9,13 @@
 
 </head>
 <body>
-@*180903 21:05
+    @*180903 21:05
         tutaj odnosimy się do partial view
         stworzylismy go na potrzeby navbar i jest w Views/Shared/_NavBar
         tutaj umieszczamy jedynie odwołanie do niego
     *@
-@Html.Partial("_NavBar")
-<div class="container body-content">
+    @Html.Partial("_NavBar")
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -25,6 +25,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @*180815_5_21:00 tutaj znajduje się odłowanie do jquery - przekazujemy nasz skrypt validacyjny (wbudowany) w customerForm *@
     @RenderSection("scripts", required: false)
 </body>
 </html>

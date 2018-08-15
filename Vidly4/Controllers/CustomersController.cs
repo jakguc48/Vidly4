@@ -71,6 +71,7 @@ namespace Vidly4.Controllers
         //180812_2_18:42 dodajemy akcje tworzaca uzytkownika z http post. Dodajemy HttpPost - dobry nawyk to taki, ze akcje które modyfikuja dane nie powinny być dostepne w miejscu, które pobiera dane czyli HttpGet
         //zachodzi model binding - mvc framework jest na tyle zmyślny, ze rozumie powiazanie pól na stronie i wiaże Customer customer z naszym obiektem Modelem
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             //180812_3_18:48 Samo add dodaje ale oznacza jako 'added'. jesli chcemy zatwierdzic zmiany w kontekscie, musimy uzyc funkcji save
