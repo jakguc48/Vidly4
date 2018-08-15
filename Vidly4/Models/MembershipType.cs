@@ -9,7 +9,7 @@ namespace Vidly4.Models
 {
     public class MembershipType
     {
-        public short Id { get; set; }
+        public int Id { get; set; }
         public short SignUpFee { get; set; }
         public byte DurationInMonths { get; set; }
         public byte DiscountRate { get; set; }

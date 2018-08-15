@@ -331,6 +331,10 @@
     <Compile Include="Migrations\201808142228505_ModifyMovieModel2.Designer.cs">
       <DependentUpon>201808142228505_ModifyMovieModel2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808151144169_EditCustiMemTyp.cs" />
+    <Compile Include="Migrations\201808151144169_EditCustiMemTyp.Designer.cs">
+      <DependentUpon>201808151144169_EditCustiMemTyp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -529,6 +533,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808142228505_ModifyMovieModel2.resx">
       <DependentUpon>201808142228505_ModifyMovieModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808151144169_EditCustiMemTyp.resx">
+      <DependentUpon>201808151144169_EditCustiMemTyp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
