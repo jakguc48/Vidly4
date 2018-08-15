@@ -16,7 +16,7 @@ namespace Vidly4.Models
             var customer = (Customer) validationContext.ObjectInstance;
 
             //jesli pay as you go albo nic to jest okej
-            if (customer.MembershipTypeId ==1 || customer.MembershipTypeId == 0)
+            if (customer.MembershipTypeId == MembershipType.Unknown || customer.MembershipTypeId == MembershipType.PayAsYouGo)
             {
                 return ValidationResult.Success;
             }
