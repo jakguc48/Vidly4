@@ -60,8 +60,8 @@ namespace Vidly4.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
-                MembershipTypes = membershipTypes,
-                Customer = new Customer()
+                MembershipTypes = membershipTypes
+                
 
             };
             return View("CustomerForm", viewModel);
@@ -82,10 +82,10 @@ namespace Vidly4.Controllers
             if (!ModelState.IsValid)
             {
 
-                var viewModel = new CustomerFormViewModel
+                var viewModel = new CustomerFormViewModel(customer)
                 {
 
-                    Customer = customer, //dodajemy dane które są wprowadzone na stronie, odwołujemy się do zmiennej Customer customer podanej jako parametr akcji Save
+                    //dodajemy dane które są wprowadzone na stronie, odwołujemy się do zmiennej Customer customer podanej jako parametr akcji Save
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
                 return View("CustomerForm", viewModel);
@@ -128,9 +128,8 @@ namespace Vidly4.Controllers
                 return HttpNotFound();
             }
 
-            var viewModel = new CustomerFormViewModel
+            var viewModel = new CustomerFormViewModel(customer)
             {
-                Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
 

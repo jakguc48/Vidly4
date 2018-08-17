@@ -18,14 +18,14 @@
 
 
 
-        @Html.LabelFor(m => m.Customer.Name)
+        @Html.LabelFor(m => m.Name)
 
         @*180812_0_14:28 dodajemy tekstbox o klasie form-control *@
-        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
         @*180812_0_14:28 --------------------------------------------------------------------------*@
 
         @*180815_0_13_57 dodajemy Validacje Messages*@
-        @Html.ValidationMessageFor(c => c.Customer.Name)
+        @Html.ValidationMessageFor(c => c.Name)
         @*180815_0_13_57 ----------------------------------------------------------*@
 
         <br />
@@ -33,17 +33,17 @@
 
 
         @*180812_1_17:43 Dodajemy combobox ale tutaj sprawa jest bardizej skomplikowana. Tworzymy nowy obiekt w ASP NET new SELECT LIST *@
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), " ", new { @class = "form-control" })
-        @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
+        @Html.LabelFor(m => m.MembershipTypeId)
+        @Html.DropDownListFor(m => m.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), " ", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.MembershipTypeId)
         @*180812_1_17:43 --------------------------------------------------------------------------*@
 
         <br />
 
-        @Html.LabelFor(m => m.Customer.Birthdate)
+        @Html.LabelFor(m => m.Birthdate)
         @*180812_4_19:01 dodajemy overload do formatu daty*@
-        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(c => c.Customer.Birthdate)
+        @Html.TextBoxFor(m => m.Birthdate, "{0:d MMM yyyy}", new {@type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Birthdate)
         @*180812_4_19:01 ------------------------------------------------------*@
 
 
@@ -52,7 +52,7 @@
 
         @*180812_0_15_10 tutaj checkbox na podstawie getbootstrap.com *@
         <div class="form-group">
-            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
+            @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter)
             <label>
                 Subscribed to newsletter?
             </label>
@@ -67,7 +67,7 @@
     @*180812_2_18:39-------------------------------------------------------------*@
 
     @*180812_5_19:32 dodajemy id jako ukryty obiekt bo funkcja Save korzysta z powiazania id w bazie i na stronie*@
-    @Html.HiddenFor(c => c.Customer.Id)
+    @Html.HiddenFor(c => c.Id)
     @*dodajemy zabezpioeczenie przed hakerami - generuje sie w buttonie SAVE token*@
     @Html.AntiForgeryToken()
 
