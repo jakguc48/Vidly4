@@ -26,10 +26,10 @@ namespace Vidly4.Controllers
 
         // GET: Movies
         [Route("Movies")]
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.MovieGenere).ToList();
-            return View(movies);
+            
+            return View();
         }
 
         [Route("Movies/Details/{numerek:regex(\\d)}")]

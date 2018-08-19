@@ -12,28 +12,79 @@
 
 
 
-<table class="movcus">
+<table id="movies" class="movcus">
     <thead>
         <tr>
-            <th>id</th>
+
             <th>name</th>
             <th>genere</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var Movie in Model)
-        {
-            <tr>
-                <td>@Movie.Id</td>
-                <td>@Html.ActionLink(Movie.Name, "Details", "Movies", new { id = Movie.Id }, null)</td>
-                <td>@Movie.MovieGenere.GenereName</td>
-                <td>@Html.ActionLink("Edit", "Edit", "Movies", new { id = Movie.Id, @type = "submit", @class = "btn btn-primary" }, null)</td>
-
-
-            </tr>
-        }
+     
     </tbody>
 
 </table>
-<br /><br/>
-<button onclick="location.href='@Url.Action("New", "Movies")';", class = "btn btn-primary">New Movie</button>
+<br /><br />
+<button onclick="location.href='@Url.Action("New", "Movies")';" , class="btn btn-primary">New Movie</button>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function ()
+        {
+            @*180818_3_15:08 dodajemy odwołanie do naszego budnle*@
+            @*180819_4_14:48 dodajemy ajax jako parametr do datatable. url przekierowujemy do customers, a dataSrc
+                to pusty string, ponieważ nasza formuła DataTable zwraca domyślnie array do którego się odwołujemy i skąd bierzemy nasze
+                dane. Dodatkowe źródło nie jest wymagane do doprecyzowania*@
+            @* 180819_4_14:50 następnie określamy nasze kolumny, na początku pierwsza kolumna, czyli date:name ale
+                chcemy zeby funkcjonowala jako link do edit wiec renderujemy funkcje ktora przyjmuje argumenty:
+                1: data chwile wczesniej podane, 2:type? 3: obiekt który ma być zrenderowany*@
+
+            var table =  $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, movie) {
+                            return "<a href='/movies/edit/" + movie.id + "'>" + movie.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "movieGenere.genereName"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-movie-id="+ data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#movies").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+
+                    @*180818_1_14:40 dodajemy bootbox *@
+                    bootbox.confirm("are you sure to delete this movie ",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/movies/" + $(button).attr("data-movie-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        table.row(button.parents("tr")).remove().draw();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
+}

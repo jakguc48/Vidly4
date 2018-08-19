@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -23,7 +24,7 @@ namespace Vidly4.Controllers.Api
         public IEnumerable<MovieDto> GetMovies()
         {
             //mappujemy do customerdto, poprzez mapper, i nie używamy () ponieważ nie uruchamiamy metody, tylko delegujemy do niej
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies.Include(m => m.MovieGenere).ToList().Select(Mapper.Map<Movie, MovieDto>);
         }
 
         public IHttpActionResult GetMovie(int id)

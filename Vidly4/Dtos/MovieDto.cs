@@ -17,6 +17,8 @@ namespace Vidly4.Dtos
         [Required]
         public int MovieGenereId { get; set; }
 
+        public MovieGenereDto MovieGenere { get; set; }
+
         [Required]
         public DateTime ReleaseDate { get; set; }
 

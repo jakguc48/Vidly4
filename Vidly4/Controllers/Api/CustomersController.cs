@@ -27,9 +27,7 @@ namespace Vidly4.Controllers.Api
         {
             //mappujemy do customerdto, poprzez mapper, i nie używamy () ponieważ nie uruchamiamy metody, tylko delegujemy do niej
             //180819_5_15:21 dodajemy odniesienie do membership type na celu majac dodanie memtype do tabeli w api. tworzymy nowe dto w tym celu
-            return _context.Customers.Include(c => c.MembershipType).
-                ToList().
-                Select(Mapper.Map<Customer, CustomerDto>);
+            return _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>);
         }
 
 
