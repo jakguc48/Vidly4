@@ -33,10 +33,11 @@ namespace Vidly4.Controllers
         {
             //180810_1_18:51 tutaj zmieniamy na odniesienie do kontekstu zamiast wewnętrznej metody. Odniesienie do db
             //dodajemy do odniesienia TOLIST żeby od razu ładował całość a nie pojedynczo podczas iteracji
-                //180810_1_19:36 dodajemy include, zeby w podowaniu zawrzec rowniez inna tabele, aby sie do niej odwlolac potem
-            var Customer = _context.Customers.Include(c => c.MembershipType).ToList();
-                //180810_1_19:36----------------------------------------------------------------------------------------------------
-            return View(Customer);
+            //180810_1_19:36 dodajemy include, zeby w podowaniu zawrzec rowniez inna tabele, aby sie do niej odwlolac potem
+            //180819_4_15:05 wywalamy to customer ponieważ pobieramy dane z naszego api i przekazywanie modelu nie jest już nam potrzebne
+            // var Customer = _context.Customers.Include(c => c.MembershipType).ToList();
+            //180810_1_19:36----------------------------------------------------------------------------------------------------
+            return View();
             //180810_1_18:51----------------------------------------------------------------------------------------------------
         }
 

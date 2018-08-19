@@ -7,35 +7,80 @@
 
 <h2>Customers</h2>
 
-@if (!Model.Any())
-{
-    <p>We don't have customers</p>
-}
-else
-{
-    <table class="movcus">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Subscription Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var Customer in Model)
-            {
-                <tr>
-                    <td> @Customer.Id</td>
-                    @*180812_4_19:01 dodajemy akcje edit pozwalajacą zmianiać dane customera zamiast Details alt+enter->new action*@
-                    <td>@Html.ActionLink(Customer.Name, "Edit", "Customers", new { id = Customer.Id }, null)</td>
-                    @*180812_4_19:01 -----------------------------------------------------------------------*@
-                    <td>@Customer.MembershipType.Name</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <br />
-    <button onclick="location.href = '@Url.Action("New", "Customers")';" , class="btn btn-primary">New Customer</button>
+<table id="customers" class="movcus">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Subscription Name</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    @* z tego miejsca wywalamy foreach block*@
+    </tbody>
+</table>
+<br />
+<button onclick="location.href = '@Url.Action("New", "Customers")';" , class="btn btn-primary">New Customer</button>
 
 }
 
+@*180818_0_13:54 odniesienie do jquery *@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function ()
+        {
+            @*180818_3_15:08 dodajemy odwołanie do naszego budnle*@
+            @*180819_4_14:48 dodajemy ajax jako parametr do datatable. url przekierowujemy do customers, a dataSrc
+                to pusty string, ponieważ nasza formuła DataTable zwraca domyślnie array do którego się odwołujemy i skąd bierzemy nasze
+                dane. Dodatkowe źródło nie jest wymagane do doprecyzowania*@
+            @* 180819_4_14:50 następnie określamy nasze kolumny, na początku pierwsza kolumna, czyli date:name ale
+                chcemy zeby funkcjonowala jako link do edit wiec renderujemy funkcje ktora przyjmuje argumenty:
+                1: data chwile wczesniej podane, 2:type? 3: obiekt który ma być zrenderowany*@
+
+            var table =  $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-customer-id="+ data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#customers").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+
+                    @*180818_1_14:40 dodajemy bootbox *@
+                    bootbox.confirm("are you sure to delete this customer (bootbox)",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/customers/" + $(button).attr("data-customer-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        table.row(button.parents("tr")).remove().draw(); 
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
+}

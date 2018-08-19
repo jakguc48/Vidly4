@@ -21,6 +21,9 @@ namespace Vidly4.Dtos
 
         public int MembershipTypeId { get; set; }
 
+        public MembershipTypeDto MembershipType { get; set; }
+
+
 //        [Min18YearsIFAMember]
         //180812_1_17:25-----------------------------------------------
         public DateTime? Birthdate { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
@@ -25,7 +26,10 @@ namespace Vidly4.Controllers.Api
         public IEnumerable<CustomerDto> GetCustomers()
         {
             //mappujemy do customerdto, poprzez mapper, i nie używamy () ponieważ nie uruchamiamy metody, tylko delegujemy do niej
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            //180819_5_15:21 dodajemy odniesienie do membership type na celu majac dodanie memtype do tabeli w api. tworzymy nowe dto w tym celu
+            return _context.Customers.Include(c => c.MembershipType).
+                ToList().
+                Select(Mapper.Map<Customer, CustomerDto>);
         }
 
 
@@ -68,18 +72,18 @@ namespace Vidly4.Controllers.Api
 
         // PUT /api/customer/1 + 180817_4_20:35 
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             //mapujemy - poxniej automapper
             /*
@@ -95,21 +99,25 @@ namespace Vidly4.Controllers.Api
             Mapper.Map(customerDto, customerInDb);
 
             _context.SaveChanges();
+
+            return Ok();
         }
 
         // DELETE /api/customer/1
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
 
     }
