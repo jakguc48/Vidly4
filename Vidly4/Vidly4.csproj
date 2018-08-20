@@ -367,6 +367,10 @@
     <Compile Include="Migrations\201808192200460_AddDrivingLicenceToApplicationUser.Designer.cs">
       <DependentUpon>201808192200460_AddDrivingLicenceToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808201943378_AddPhoneNumberToRegistration.cs" />
+    <Compile Include="Migrations\201808201943378_AddPhoneNumberToRegistration.Designer.cs">
+      <DependentUpon>201808201943378_AddPhoneNumberToRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -382,10 +386,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
+    <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMoviesViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-Darkly.css" />
@@ -756,6 +762,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808192200460_AddDrivingLicenceToApplicationUser.resx">
       <DependentUpon>201808192200460_AddDrivingLicenceToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201943378_AddPhoneNumberToRegistration.resx">
+      <DependentUpon>201808201943378_AddPhoneNumberToRegistration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

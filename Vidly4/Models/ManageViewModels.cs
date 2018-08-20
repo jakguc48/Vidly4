@@ -75,6 +75,7 @@ namespace Vidly4.Models
         [Required]
         [Phone]
         [Display(Name = "Phone Number")]
+        [StringLength(50)]
         public string PhoneNumber { get; set; }
     }
 
