@@ -1,0 +1,61 @@
+﻿@using System.Web.UI.WebControls
+@using WebGrease.Css.Extensions
+@model IEnumerable<Vidly4.Models.Movie>
+
+
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h2>Movies</h2>
+
+
+
+<table id="movies" class="movcus">
+    <thead>
+        <tr>
+
+            <th>name</th>
+            <th>genere</th>
+        </tr>
+    </thead>
+    <tbody>
+     
+    </tbody>
+
+</table>
+<br /><br />
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function ()
+        {
+            @*180818_3_15:08 dodajemy odwołanie do naszego budnle*@
+            @*180819_4_14:48 dodajemy ajax jako parametr do datatable. url przekierowujemy do customers, a dataSrc
+                to pusty string, ponieważ nasza formuła DataTable zwraca domyślnie array do którego się odwołujemy i skąd bierzemy nasze
+                dane. Dodatkowe źródło nie jest wymagane do doprecyzowania*@
+            @* 180819_4_14:50 następnie określamy nasze kolumny, na początku pierwsza kolumna, czyli date:name ale
+                chcemy zeby funkcjonowala jako link do edit wiec renderujemy funkcje ktora przyjmuje argumenty:
+                1: data chwile wczesniej podane, 2:type? 3: obiekt który ma być zrenderowany*@
+
+            var table =  $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                       
+                    },
+                    {
+                        data: "movieGenere.genereName"
+                    }
+                ]
+            });
+        });
+    </script>
+}
